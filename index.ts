@@ -1,7 +1,7 @@
 import express from "express";
 import "dotenv/config";
 import { createServer } from "http";
-import { Server } from "socket.io";
+// import { Server } from "socket.io";
 import cors from "cors";
 const app = express();
 const server = createServer(app);
@@ -76,28 +76,28 @@ const findByValue = (value: string) => {
 //   });
 // });
 
-app.get("/a", (req, res) => {
-  let showUsers: string[] = [];
-  console.log(users);
-  Array.from(users.keys()).forEach((user) => showUsers.push(user));
-  res.send({ status: "ok", data: showUsers || "No hay" });
-});
-app.get("/b/:userId", (req, res) => {
-  const userId = req.params.userId;
-  console.log(userId);
-  console.log(users.get(userId));
-  res.send(userId || "nada");
-});
-app.get("/userExists/:userName", (req, res) => {
-  const userName = req.params.userName;
-  const exists = findByValue(userName);
-  console.log(userName, "||", exists);
-  if (!exists) {
-    res.json({ exists, message: "This user name can be used!" });
-  } else {
-    res.json({ exists: true, message: "This user name cannot be used..." });
-  }
-});
+// app.get("/a", (req, res) => {
+//   let showUsers: string[] = [];
+//   console.log(users);
+//   Array.from(users.keys()).forEach((user) => showUsers.push(user));
+//   res.send({ status: "ok", data: showUsers || "No hay" });
+// });
+// app.get("/b/:userId", (req, res) => {
+//   const userId = req.params.userId;
+//   console.log(userId);
+//   console.log(users.get(userId));
+//   res.send(userId || "nada");
+// });
+// app.get("/userExists/:userName", (req, res) => {
+//   const userName = req.params.userName;
+//   const exists = findByValue(userName);
+//   console.log(userName, "||", exists);
+//   if (!exists) {
+//     res.json({ exists, message: "This user name can be used!" });
+//   } else {
+//     res.json({ exists: true, message: "This user name cannot be used..." });
+//   }
+// });
 app.get("/ping", (req, res) => {
   res.send("pong");
 });
