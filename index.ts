@@ -101,13 +101,18 @@ app.get("/userExists/:userName", (req, res) => {
 app.get("/ping", (req, res) => {
   res.send("pong");
 });
-const PORT = process.env.PORT;
+const PORT = Number(process.env.PORT);
+
+if (!PORT) {
+  throw new Error("PORT no definido");
+}
+
 server.listen(
   {
     port: PORT,
     host: "0.0.0.0",
   },
   () => {
-    console.log(`Server corriendo en el puerto ${PORT || 3000}`);
+    console.log(`Server escuchando en ${PORT}`);
   }
 );
