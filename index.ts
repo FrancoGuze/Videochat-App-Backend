@@ -101,7 +101,7 @@ app.get("/userExists/:userName", (req, res) => {
 app.get("/ping", (req, res) => {
   res.send("pong");
 });
-
-server.listen(3000, "127.0.0.1", () => {
-  console.log(`Server corriendo en el puerto 3000`);
+const PORT = process.env.PORT
+server.listen(PORT || 3000, () => {
+  console.log(`Server corriendo en el puerto ${PORT || 3000}`);
 });
