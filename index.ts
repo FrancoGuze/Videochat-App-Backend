@@ -8,14 +8,14 @@ const server = createServer(app);
 const users = new Map();
 app.use(
   cors({
-    origin: "*",
+    origin:process.env.FRONTEND_URL || "*",
     methods: ["GET", "POST"],
   })
 );
 //Cambiar origin con la url de front
 
 const io = new Server(server, {
-  cors: { origin: "*", methods: ["GET", "POST"] },
+  cors: { origin:process.env.FRONTEND_URL || "*", methods: ["GET", "POST"] },
 });
 app.use(express.json());
 
@@ -102,6 +102,6 @@ app.get("/ping", (req, res) => {
   res.send("pong");
 });
 const PORT = process.env.PORT
-server.listen(PORT || 3000, () => {
+server.listen(PORT, () => {
   console.log(`Server corriendo en el puerto ${PORT || 3000}`);
 });
