@@ -8,19 +8,21 @@ on:
 jobs:
   backend-tests:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup node v24
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: "pnpm"
-          cache-dependency-path: backend/pnpm-lock.yaml
+          node-version: 24
 
-      - name: Enable pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@10.13.1 --activate
+      - name: Setup pnpm 
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.13.1
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
