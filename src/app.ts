@@ -33,11 +33,7 @@ io.on("connection", (socket) => {
 
 app.use(createUserRoutes(userService));
 
-const PORT = Number(process.env.PORT);
-
-if (!PORT) {
-  throw new Error("PORT no definido");
-}
+const PORT = Number(process.env.PORT) || 0;
 
 if (process.env.NODE_ENV !== "test") {
   server.listen(
